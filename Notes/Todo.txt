@@ -1,0 +1,5 @@
+Todo
+1) add to sessionStorage- if user's visited the site this session, cancel animation of icons
+2) sketchify icons?
+3) demo chat?  use react and local json (eventually react and mongodb with rxjs?)
+4) fix mobile view

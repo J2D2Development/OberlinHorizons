@@ -1,0 +1,139 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+body, html, ol, ul {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	height: 100%;
+	min-height: 100%;
+	font-family: 'Lato', sans-serif;
+	font-size: 22px;
+}
+
+.mtn-bg {
+	width: 100%;
+	min-height: 65vh;
+	background-image: url(../img/riding.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.fullwidth-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.full-size-title {
+	font-size: 4.5rem;
+	font-weight: normal;
+	width: 100%;
+	padding: 16px;
+	margin: 0 0 24px 0;
+	text-align: center;
+	font-family: 'Gruppo', cursive;
+}
+
+.subtitle-small {
+	font-size: 1.35rem;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.onethird-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.onethird-item {
+	background-color: rgba(255,255,255,0.6);
+	padding: 16px;
+	width: 31%;
+}
+.onethird-item h3 {
+	margin: 0 0 9px 0;
+	font-size: 1.35rem;
+	font-weight: normal;
+	text-align: center;
+}
+.onethird-text {
+	font-size: 0.8rem;
+	text-align: center;
+}
+
+.svg-wrapper--small {
+	text-align: center;
+}
+
+.member-icon-wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.member-icon--round {
+	border-radius: 5px;
+	background-color: #ccc;
+	box-shadow: 0 0 5px #000;
+	width: 150px;
+	height: 150px;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+.member-icon--hogs {
+	background-image: url(../img/hogs.jpg);
+	background-size: cover;
+}
+.member-icon--hord {
+	background-image: url(../img/hord.jpg);
+	background-size: cover;
+}
+.member-icon--lafrenz {
+	background-image: url(../img/lafrenz.jpg);
+	background-size: cover;
+}
+.member-icon--schaef {
+	background-image: url(../img/schaef.jpg);
+	background-size: cover;
+}
+.member-icon--joe {
+	background-image: url(../img/joe.jpg);
+	background-size: cover;
+}
+.member-icon--white {
+	background-image: url(../img/white.jpg);
+	background-size: cover;
+}
+.fade-in {
+	opacity: 1;
+}
+
+@media (max-width: 800px) {
+	body, html {
+		font-size: 16px;
+	}
+	.fullwidth-wrapper {
+		height: 100vh;
+	}
+	.full-size-title, .onethird-wrapper {
+		width: 100%;
+		display: block;
+	}
+	.onethird-item {
+		width: 100%;
+		margin-bottom: 24px;
+	}
+	.member-icon-wrapper {
+		display: none;
+	}
+
+}

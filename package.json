@@ -1,0 +1,23 @@
+{
+  "name": "oberlin-horizons",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "concurrently \"npm run sass-watch\" \"npm run lite\" ",
+    "lite": "lite-server",
+    "sass-compile": "sass css/main.scss css/main.css",
+    "sass-watch": "sass --watch css/main.scss:css/main.css"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "core-js": "^2.4.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.20",
+    "morgan": "^1.7.0",
+    "rxjs": "5.0.0-beta.6",
+    "systemjs": "0.19.27"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.2.0"
+  }
+}
