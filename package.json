@@ -3,16 +3,18 @@
   "version": "0.0.1",
   "scripts": {
     "start": "concurrently \"npm run sass-watch\" \"npm run lite\" ",
+    "start-react": "concurrently \"npm run sass-watch\" \"node server.js\" ",
     "lite": "lite-server",
-    "sass-compile": "sass css/main.scss css/main.css",
-    "sass-watch": "sass --watch css/main.scss:css/main.css"
+    "sass-compile": "sass static/css/main.scss static/css/main.css",
+    "sass-watch": "sass --watch static/css/main.scss:static/css/main.css"
   },
   "dependencies": {
     "body-parser": "^1.15.1",
     "core-js": "^2.4.0",
-    "express": "^4.13.4",
+    "express": "^4.14.0",
     "mongoose": "^4.4.20",
     "morgan": "^1.7.0",
+    "react": "^15.1.0",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27"
   },

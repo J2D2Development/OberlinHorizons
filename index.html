@@ -3,8 +3,24 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Oberlin Horizons</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
 	<link href='http://fonts.googleapis.com/css?family=Lato|Gruppo' rel='stylesheet' type='text/css'>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+    <!-- <script src="app/main.js"></script> -->
+    <script type="text/javascript">
+		var Hello = React.createClass({
+		  render: function() {
+		    return <div>Hello {this.props.name}</div>;
+		  }
+		});
+
+		ReactDOM.render(
+		  <Hello name="John" />,
+		  document.getElementById('container')
+		);
+    </script>
 </head>
 <body>
 	<div class="fullwidth-wrapper mtn-bg">
@@ -12,14 +28,7 @@
 			Oberlin Horizons
 			<div class="subtitle-small" id="home-subtitle">Reach the Horizon!</div>
 		</h1>
-		<div class="member-icon-wrapper">
-			<div class="member-icon--round member-icon--hogs"></div>
-			<div class="member-icon--round member-icon--hord"></div>
-			<div class="member-icon--round member-icon--lafrenz"></div>
-			<div class="member-icon--round member-icon--schaef"></div>
-			<div class="member-icon--round member-icon--joe"></div>
-			<div class="member-icon--round member-icon--white"></div>
-		</div>
+		<div id="container"></div>
 	</div>
 		<div class="onethird-wrapper">
 			<div class="onethird-item">
@@ -67,7 +76,7 @@
 					    <style>
 					      .cls-1 {
 					        fill: none;
-					        stroke: #666666;
+					        stroke: #5792d2;
 					        fill-rule: evenodd;
 					      }
 					    </style>
@@ -80,8 +89,28 @@
 				</div>
 			</div>
 		</div>
+		<h1 class="mid-size-title">Reach The Horizon</h2>
+		<div class="images-wrapper">
+			<div class="image-wrapper">
+				<div class="image-caption--top">Shirtless Dudes!</div>
+				<img src="" data-src="static/img/group.jpg" alt="group" />
+			</div>
+			<div class="image-wrapper">
+			<div class="image-caption--top">Working Out!</div>
+				<img src="" data-src="static/img/workingout.jpg" alt="group" />
+			</div>
+			<div class="image-wrapper">
+			<div class="image-caption--top">Hugging On Each Other!</div>
+				<img src="" data-src="static/img/joeyschaef.jpg" alt="group" />
+			</div>
+			<div class="image-wrapper">
+			<div class="image-caption--top">Drinking!</div>
+				<img src="" data-src="static/img/corona.jpg" alt="group" />
+			</div>
+		</div>
 	</div>
+	<div class="footer">Oberlin Horizons</div>
 
-	<script type="text/javascript" src="js/load.js"></script>
+	<script type="text/javascript" src="static/js/load.js"></script>
 </body>
 </html>
