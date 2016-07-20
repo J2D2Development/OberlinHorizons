@@ -23,6 +23,15 @@ app.get('/chat', function(req, res) {
 
 io.on('connection', function(socket) {
     console.log('a user connected');
+
+    socket.on('chat message', function(msg) {
+        console.log('message passed: ', msg);
+        io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', function() {
+        console.log('a user disconnected');
+    });
 });
 
 http.listen(8001, function() {

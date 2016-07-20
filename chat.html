@@ -93,9 +93,31 @@
 </div>
 
 <footer class="footer">
-    <form action="" class="footer">
+    <form action="" class="footer" id="chat-form">
         <input id="m" autocomplete="off" type="text" placeholder="Chat with me!" /><input type="submit" name="send" value="Send" />
     </form>
 </footer>
+
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+    var socket = io();
+    var form = document.querySelector('#chat-form');
+    var display = document.querySelector('#messages');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var msg = document.querySelector('#m');
+
+        socket.emit('chat message', msg.value);
+        msg.value = '';
+        return false;
+    });
+
+    socket.on('chat message', function(msg) {
+        var newLi = document.createElement('li');
+        newLi.innerHTML = msg;
+        display.appendChild(newLi);
+    });
+</script>
 </body>
 </html>
