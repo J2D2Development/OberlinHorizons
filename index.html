@@ -3,8 +3,9 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Oberlin Horizons</title>
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 	<link href='http://fonts.googleapis.com/css?family=Lato|Gruppo' rel='stylesheet' type='text/css'>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
@@ -23,6 +24,20 @@
     </script> -->
 </head>
 <body>
+	<div class="slideout slideout-hidden" id="slideout-login">
+		<button class="close" id="slideout-hide">
+			<i class="fa fa-times" aria-hidden="true" alt="Close"></i>
+		</button>
+		<h1>Log In</h1>
+		<div class="slideout--text">
+			<input type="text" name="username" id="username" placeholder="Username" />
+			<input type="text" name="password" id="password" placeholder="Password" />
+			<button id="login-submit" class="login-submit">Login</button>
+		</div>
+	</div>
+	<div class="login-button" id="slideout-show">
+		<i class="fa fa-lock" aria-hidden="true"></i>
+	</div>
 	<div class="fullwidth-wrapper mtn-bg">
 		<h1 class="full-size-title">
 			Oberlin Horizons
@@ -93,24 +108,40 @@
 		<div class="images-wrapper">
 			<div class="image-wrapper">
 				<div class="image-caption--top">Shirtless Dudes!</div>
-				<img src="" data-src="/img/group.jpg" alt="group" />
+				<img src="" data-src="/static/img/group.jpg" alt="group" />
 			</div>
 			<div class="image-wrapper">
 			<div class="image-caption--top">Working Out!</div>
-				<img src="" data-src="/img/workingout.jpg" alt="group" />
+				<img src="" data-src="/static/img/workingout.jpg" alt="group" />
 			</div>
 			<div class="image-wrapper">
 			<div class="image-caption--top">Hugging On Each Other!</div>
-				<img src="" data-src="/img/joeyschaef.jpg" alt="group" />
+				<img src="" data-src="/static/img/joeyschaef.jpg" alt="group" />
 			</div>
 			<div class="image-wrapper">
 			<div class="image-caption--top">Drinking!</div>
-				<img src="" data-src="/img/corona.jpg" alt="group" />
+				<img src="" data-src="/static/img/corona.jpg" alt="group" />
 			</div>
 		</div>
 	</div>
 	<div class="footer">Oberlin Horizons</div>
 
 	<script type="text/javascript" src="/js/load.js"></script>
+	<script type="text/javascript">
+		const slideOutShowButton = document.querySelector('#slideout-show');
+		const loginSlideout = document.querySelector('#slideout-login');
+		const slideOutHideButton = document.querySelector('#slideout-hide');
+
+		slideOutShowButton.addEventListener('click', slideOutShow, false);
+		slideOutHideButton.addEventListener('click', slideOutHide, false);
+
+		function slideOutShow() {
+			loginSlideout.classList.remove('slideout-hidden');
+		}
+
+		function slideOutHide() {
+			loginSlideout.classList.add('slideout-hidden');
+		}
+	</script>
 </body>
 </html>

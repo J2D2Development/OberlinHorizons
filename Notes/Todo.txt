@@ -1,5 +1,15 @@
 Todo
-2) sketchify icons?
+
+CURRENT
+    1) Continue with login
+        -finish slideout/form ui
+        -plug into dummy (json) 'database' for testing
+        -hook up to mongodb (local instance)
+            -fields: fname, lname, email/username, password, profilepicid?, motto
+        -enable bcrypt for password
+
+
+
 3) demo chat?  use react and local json (eventually react and mongodb with rxjs?)
 4) fix mobile view
 5) lazy loading image is cheap- make it work when it scrolls into view
