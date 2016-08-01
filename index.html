@@ -134,7 +134,9 @@
 	</div>
 	<div class="footer">Oberlin Horizons</div>
 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/load.js"></script>
+
 	<script type="text/javascript">
 		const body = document.querySelector('body');
 		const loginShowButton = document.querySelector('#login-show');
@@ -178,6 +180,7 @@
 			const signUp = 'Sign Up';
 
 			form.id = form.id === 'login' ? 'signup' : 'login';
+			form.reset();
 
 			this.textContent = this.textContent === loginText ? signUp : loginText;
 			loginSubmit.textContent = loginSubmit.textContent === loginText ? signUp : loginText;
@@ -189,7 +192,6 @@
 				button.classList.toggle('button-orange-bg');
 			});
 
-
 			loginHeader.textContent = loginHeader.textContent === 'Log In' ? 'Sign Up' : 'Log In';
 			divSwaps.forEach((div) => {
 				div.classList.toggle('blue-bg');
@@ -199,9 +201,7 @@
 
 		function sendForm(evt) {
 			evt.preventDefault();
-			const loginProcessor = 'LOGIN HERE';
-			const signUpProcessor = 'SIGN UP HERE';
-			const destination = this.id === 'login' ? loginProcessor : signUpProcessor;
+			const url = this.id === 'login' ? '/login' : '/signup';
 			let data = {};
 
 			for(let i = 0, l = evt.target.length; i < l; i += 1) {
@@ -210,7 +210,19 @@
 				}
 			}
 
-			//send data to server to process ('data' is info, 'destination' is url?  or maybe destination is 'type' and use one url for processing both sign up and log in submissions).
+			$.ajax({
+				type: 'POST',
+				url: url,
+				data: data,
+				dataType: 'json',
+				cache: false
+			})
+			.done(function(response) {
+				console.log('success', response);
+			})
+			.fail(function(response) {
+				console.log('failure', response);
+			});
 		}
 	</script>
 </body>
