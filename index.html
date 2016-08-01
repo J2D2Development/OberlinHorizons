@@ -24,18 +24,26 @@
     </script> -->
 </head>
 <body>
-	<div class="slideout slideout-hidden" id="slideout-login">
-		<button class="close" id="slideout-hide">
-			<i class="fa fa-times" aria-hidden="true" alt="Close"></i>
-		</button>
-		<h1>Log In</h1>
-		<div class="slideout--text">
-			<input type="text" name="username" id="username" placeholder="Username" />
-			<input type="text" name="password" id="password" placeholder="Password" />
-			<button id="login-submit" class="login-submit">Login</button>
+	<div class="full-bg-overlay">
+		<div class="modal-wrapper" id="modal-wrapper">
+			<button class="close blue-bg" id="login-hide">
+				<i class="fa fa-times" aria-hidden="true" alt="Close"></i>
+			</button>
+			<h1 class="blue-bg">Log In</h1>
+			<div class="modal--text">
+				<form id="login" method="POST">
+					<input type="text" name="username" id="username" placeholder="Email" />
+					<input type="text" name="password" id="password" placeholder="Password" />
+					<button id="login-submit" class="login-submit button-blue-bg">Log In</button>
+				</form>
+				<div class="sign-up-link">
+					<span id="sign-up-text">Don't have an account yet?</span>
+					<button class="sign-up button-orange-bg" id="toggle-modal-type">Sign Up</button>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="login-button" id="slideout-show">
+	<div class="login-button" id="login-show">
 		<i class="fa fa-lock" aria-hidden="true"></i>
 	</div>
 	<div class="fullwidth-wrapper mtn-bg">
@@ -128,19 +136,81 @@
 
 	<script type="text/javascript" src="/js/load.js"></script>
 	<script type="text/javascript">
-		const slideOutShowButton = document.querySelector('#slideout-show');
-		const loginSlideout = document.querySelector('#slideout-login');
-		const slideOutHideButton = document.querySelector('#slideout-hide');
+		const body = document.querySelector('body');
+		const loginShowButton = document.querySelector('#login-show');
+		const loginModal = document.querySelector('#modal-wrapper');
+		const form = document.querySelector('#login');
+		const loginHeader = loginModal.querySelector('h1');
+		const loginSubmit = loginModal.querySelector('#login-submit');
+		const loginHideButton = document.querySelector('#login-hide');
+		const modalText = document.querySelector('#sign-up-text');
+		const overlay = document.querySelector('.full-bg-overlay');
+		const modalSwitch = document.querySelector('#toggle-modal-type');
 
-		slideOutShowButton.addEventListener('click', slideOutShow, false);
-		slideOutHideButton.addEventListener('click', slideOutHide, false);
+		loginShowButton.addEventListener('click', loginShow, false);
+		loginHideButton.addEventListener('click', loginHide, false);
+		modalSwitch.addEventListener('click', swapLoginSignup, false);
+		form.addEventListener('submit', sendForm, false);
+		// overlay.addEventListener('click', loginHide, false);
 
-		function slideOutShow() {
-			loginSlideout.classList.remove('slideout-hidden');
+		function loginShow() {
+			loginModal.classList.add('fade-in', 'move-forward-99');
+			overlay.classList.add('fade-in', 'move-forward-98');
+			body.classList.add('no-overflow');
 		}
 
-		function slideOutHide() {
-			loginSlideout.classList.add('slideout-hidden');
+		function loginHide() {
+			loginModal.classList.remove('fade-in');
+			overlay.classList.remove('fade-in');
+			form.reset();
+
+			setTimeout(() => {
+				overlay.classList.remove('move-forward-98');
+				loginModal.classList.remove('move-forward-99');
+				body.classList.remove('no-overflow');
+			}, 300);
+		}
+
+		function swapLoginSignup() {
+			const divSwaps = [loginHeader, loginHideButton];
+			const buttonSwaps = [this, loginSubmit];
+			const loginText = 'Log In';
+			const signUp = 'Sign Up';
+
+			form.id = form.id === 'login' ? 'signup' : 'login';
+
+			this.textContent = this.textContent === loginText ? signUp : loginText;
+			loginSubmit.textContent = loginSubmit.textContent === loginText ? signUp : loginText;
+
+			modalText.textContent = modalText.textContent === "Don't have an account yet?" ? "Already have an account?" : "Don't have an account yet?";
+
+			buttonSwaps.forEach((button) => {
+				button.classList.toggle('button-blue-bg');
+				button.classList.toggle('button-orange-bg');
+			});
+
+
+			loginHeader.textContent = loginHeader.textContent === 'Log In' ? 'Sign Up' : 'Log In';
+			divSwaps.forEach((div) => {
+				div.classList.toggle('blue-bg');
+				div.classList.toggle('orange-bg');
+			});
+		}
+
+		function sendForm(evt) {
+			evt.preventDefault();
+			const loginProcessor = 'LOGIN HERE';
+			const signUpProcessor = 'SIGN UP HERE';
+			const destination = this.id === 'login' ? loginProcessor : signUpProcessor;
+			let data = {};
+
+			for(let i = 0, l = evt.target.length; i < l; i += 1) {
+				if(evt.target[i].nodeName === 'INPUT') {
+					data[evt.target[i].id] = evt.target[i].value;
+				}
+			}
+
+			//send data to server to process ('data' is info, 'destination' is url?  or maybe destination is 'type' and use one url for processing both sign up and log in submissions).
 		}
 	</script>
 </body>

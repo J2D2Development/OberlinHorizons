@@ -2,8 +2,10 @@ Todo
 
 CURRENT
     1) Continue with login
-        -finish slideout/form ui
+        -add client/server validation (check for blanks, implement zxcvbn?)
+        -add server processor (one url, send 'type' with data object and just handle on the backend)
         -plug into dummy (json) 'database' for testing
+            -use fields below, but only email/password are required.  when user signs up, they should get an email confirmation (after approval by admin)- click the link and they can configure their profile (optional).
         -hook up to mongodb (local instance)
             -fields: fname, lname, email/username, password, profilepicid?, motto
         -enable bcrypt for password

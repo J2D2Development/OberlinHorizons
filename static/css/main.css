@@ -12,6 +12,20 @@ body, html {
   min-height: 100%;
   font-family: 'Lato', sans-serif; }
 
+.full-bg-overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease-in-out; }
+
 .mtn-bg {
   width: 100%;
   min-height: 100vh;
@@ -114,10 +128,7 @@ body, html {
   background-color: #5792d2;
   width: 100%; }
 
-.fade-in {
-  opacity: 1; }
-
-/*login area*/
+/*login/signup modal*/
 .login-button {
   position: fixed;
   display: flex;
@@ -128,8 +139,8 @@ body, html {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  background-color: #1ca8dd;
   text-align: center;
-  background-color: #ccc;
   color: #fff;
   cursor: pointer;
   backface-visibility: hidden;
@@ -137,8 +148,127 @@ body, html {
   transition: background-color 0.2s ease-in-out; }
 
 .login-button:hover {
-  background-color: #333; }
+  background-color: #137499; }
 
+.modal-wrapper {
+  position: relative;
+  box-shadow: 0 0 3px 0 #ccc;
+  width: 50%;
+  height: 70%;
+  min-width: 275px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.6s 0.3s ease-in-out;
+  background-color: #333; }
+  .modal-wrapper h1 {
+    font-size: 2em;
+    font-weight: normal;
+    padding: 6px;
+    margin: 0 0 6px 0;
+    color: #fff; }
+  .modal-wrapper .close {
+    border: 0;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: color 0.2s ease-in-out; }
+  .modal-wrapper .close:hover {
+    color: #ccc; }
+
+.modal--text {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .modal--text input {
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    background-color: inherit;
+    color: #fff;
+    padding: 4px 4px 0 4px;
+    margin: 36px 0 12px 0;
+    font-size: 1.5em;
+    width: 100%; }
+  .modal--text input:focus {
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid #ccc; }
+  .modal--text button {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer; }
+
+.sign-up-link {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  color: #fff;
+  max-width: 165px;
+  text-align: right;
+  font-size: 0.85em; }
+  .sign-up-link button {
+    border: 0;
+    margin-top: 6px;
+    width: 100%;
+    color: #fff;
+    font-size: 1.15em;
+    outline: 0;
+    transition: background-color 0.2s ease-in-out; }
+
+/*general color classes*/
+.blue-bg {
+  background-color: #1ca8dd;
+  transition: background-color 0.2s ease-in-out; }
+
+.orange-bg {
+  background-color: #dd511c;
+  transition: background-color 0.2s ease-in-out; }
+
+/*button types*/
+.button-blue-bg {
+  background-color: #1ca8dd;
+  transition: background-color 0.2s ease-in-out; }
+
+.button-blue-bg:hover {
+  background-color: #137499; }
+
+.button-orange-bg {
+  background-color: #dd511c;
+  transition: background-color 0.2s ease-in-out; }
+
+.button-orange-bg:hover {
+  background-color: #993813; }
+
+/*Utility effect classes*/
+.fade-in {
+  opacity: 1; }
+
+.fade-out {
+  opacity: 0; }
+
+.move-forward-98 {
+  z-index: 98; }
+
+.move-forward-99 {
+  z-index: 99; }
+
+.no-overflow {
+  overflow: hidden; }
+
+/*overwriting defaults*/
+input:autofill {
+  background-color: inherit; }
+
+/*slideout section*/
 .slideout {
   z-index: 99;
   position: fixed;
