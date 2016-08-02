@@ -1,13 +1,13 @@
 Todo
 
+GENERAL IDEA
+Normal site built on node/express and mongodb.  Each module (chat, video, picture sharing, project boards) is self-contained React app.  Chat is shared amonst them all?  How would we do that?
+
 CURRENT
     1) Continue with login
+        -express middleware ready- need function to pass token on route change or reload (if exists).  Where to store?  sessionStorage?  how to pass?
         -add client/server validation (check for blanks, implement zxcvbn?)
-        -add server processor (one url, send 'type' with data object and just handle on the backend)
-        -plug into dummy (json) 'database' for testing
-            -use fields below, but only email/password are required.  when user signs up, they should get an email confirmation (after approval by admin)- click the link and they can configure their profile (optional).
-        -hook up to mongodb (local instance)
-            -fields: fname, lname, email/username, password, profilepicid?, motto
+        -user should get an email confirmation (after approval by admin)- click the link and they can configure their profile (optional).
         -enable bcrypt for password
 
 
@@ -16,3 +16,9 @@ CURRENT
 4) fix mobile view
 5) lazy loading image is cheap- make it work when it scrolls into view
 6) previews for sched, chat, share?
+
+
+TO START DEV ENVIRONMENT
+    1) npm run mongo (start db)
+    2) node server.js (start server)
+        should be a way to config an npm script, but not working.

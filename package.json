@@ -4,6 +4,8 @@
   "scripts": {
     "start": "concurrently \"npm run sass-watch\" \"npm run lite\" ",
     "start-react": "concurrently \"npm run sass-watch\" \"node server.js\" ",
+    "start-full": "npm run mongo && node server.js",
+    "mongo": "mongod --dbpath c:\\OberlinHorizons\\data\\db",
     "lite": "lite-server",
     "sass-compile": "sass static/css/main.scss static/css/main.css",
     "sass-watch": "sass --watch static/css/main.scss:static/css/main.css"
@@ -12,7 +14,8 @@
     "body-parser": "^1.15.1",
     "core-js": "^2.4.0",
     "express": "^4.14.0",
-    "mongoose": "^4.4.20",
+    "jsonwebtoken": "^7.1.7",
+    "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
     "react": "^15.1.0",
     "rxjs": "5.0.0-beta.6",
