@@ -85,6 +85,7 @@ app.post('/login', function(req, res) {
                             };
                 if(user.motto) response.motto = user.motto;
                 if(user.imgpath) response.imgpath = user.imgpath;
+                req.session.token = token;
 
                 return res.json(response);
             } else {
@@ -98,31 +99,42 @@ app.post('/login', function(req, res) {
     });
 });
 
+app.get('/logout', function(req, res) {
+    delete req.session.token;
+    res.redirect('/');
+});
+
 
 //Protected routes below
 
 //set up middleware to check for token passing on request
 app.use('/horizons', function(req, res, next) {
-    let token = req.body.token || req.query.token || req.headers['x-access-token'];
+    // let token = req.body.token || req.query.token || req.headers['x-access-token'];
     console.log('using apiRoutes middleware');
-
-    if(token) {
-        console.log('token found');
-        jwt.verify(token, app.get('access'), function(err, decoded) {
-            if(err) {
-                return res.json({message: 'Failed to authenticate', loggedIn: false});
-            } else {
-                console.log('token legit');
-                req.decoded = decoded
-                next();
-            }
-        });
+    console.log(req);
+    if(!req.session.token) {
+        res.send('get out of here');
     } else {
-        return res.status(403).send({
-            loggedIn: false,
-            message: 'No token provided to protected route'
-        });
+        next();
     }
+
+    // if(token) {
+    //     console.log('token found');
+    //     jwt.verify(token, app.get('access'), function(err, decoded) {
+    //         if(err) {
+    //             return res.json({message: 'Failed to authenticate', loggedIn: false});
+    //         } else {
+    //             console.log('token legit');
+    //             req.decoded = decoded
+    //             next();
+    //         }
+    //     });
+    // } else {
+    //     return res.status(403).send({
+    //         loggedIn: false,
+    //         message: 'No token provided to protected route'
+    //     });
+    // }
 });
 
 app.get('/horizons/profile', function(req, res) {
@@ -130,6 +142,7 @@ app.get('/horizons/profile', function(req, res) {
 });
 
 app.get('/horizons/chat', function(req, res) {
+    console.log('reached chat endpoint');
     res.sendFile(path.join(__dirname + '/chat.html'));
 });
 

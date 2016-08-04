@@ -46,6 +46,9 @@
 	<div class="login-button" id="login-show">
 		<i class="fa fa-lock" aria-hidden="true"></i>
 	</div>
+	<div class="logout-button" id="logout-button">
+		<i class="fa fa-power-off" aria-hidden="true"></i>
+	</div>
 	<div class="fullwidth-wrapper mtn-bg">
 		<h1 class="full-size-title">
 			Oberlin Horizons
@@ -88,7 +91,7 @@
 
 				</div>
 				<div class="onethird-text">
-					<a href="chat">One centralized hub for all your planning needs</a>.  Will be integrated with email and text messaging, carrier pigeon, morse code, and more!
+					<a href="horizons/chat">One centralized hub for all your planning needs</a>.  Will be integrated with email and text messaging, carrier pigeon, morse code, and more!
 				</div>
 			</div>
 			<div class="onethird-item">
@@ -148,11 +151,19 @@
 		const modalText = document.querySelector('#sign-up-text');
 		const overlay = document.querySelector('.full-bg-overlay');
 		const modalSwitch = document.querySelector('#toggle-modal-type');
+		const logOutButton = document.querySelector('#logout-button');
+		const links = Array.from(document.querySelectorAll('a'));
+		console.log(links);
+		let loggedIn = false;
 
 		loginShowButton.addEventListener('click', loginShow, false);
 		loginHideButton.addEventListener('click', loginHide, false);
 		modalSwitch.addEventListener('click', swapLoginSignup, false);
 		form.addEventListener('submit', sendForm, false);
+		logOutButton.addEventListener('click', logout, false);
+		// links.forEach((link) => {
+		// 	link.addEventListener('click', router, false);
+		// });
 		// overlay.addEventListener('click', loginHide, false);
 
 		function loginShow() {
@@ -171,6 +182,18 @@
 				loginModal.classList.remove('move-forward-99');
 				body.classList.remove('no-overflow');
 			}, 300);
+		}
+
+		function logout() {
+			console.log(sessionStorage.length);
+			for(item in sessionStorage) {
+				if(sessionStorage.hasOwnProperty(item)) {
+					console.log(sessionStorage[item]);
+					sessionStorage.removeItem(item);
+				}
+			}
+			logOutButton.classList.remove('fade-in', 'move-forward-97');
+			loggedIn = false;
 		}
 
 		function swapLoginSignup() {
@@ -199,6 +222,33 @@
 			});
 		}
 
+		//!!!testing only
+		function router(evt) {
+			evt.preventDefault();
+			const url = evt.target.pathname;
+			const token = sessionStorage.getItem('token');
+			let data = {};
+
+			if(token) data.token = token;
+
+			$.ajax({
+				url: url,
+				type: 'POST',
+				cache: false,
+				data: data,
+				dataType: 'json'
+			})
+			.done(function(response) {
+				console.log('success:', response);
+				body.innerHTML = response.responseText;
+
+			})
+			.fail(function(response) {
+				console.log('failure', response);
+				body.innerHTML = response.responseText;
+			});
+		}
+
 		function sendForm(evt) {
 			evt.preventDefault();
 			const url = this.id === 'login' ? '/login' : '/signup';
@@ -219,6 +269,17 @@
 			})
 			.done(function(response) {
 				console.log('success', response);
+				if(response.loggedIn) {
+					loggedIn = true;
+					logOutButton.classList.add('fade-in', 'move-forward-97');
+
+					for(var item in response) {
+						if(response.hasOwnProperty(item)) {
+							console.log(item, response[item]);
+							sessionStorage.setItem(item, response[item]);
+						}
+					}
+				}
 			})
 			.fail(function(response) {
 				console.log('failure', response);
