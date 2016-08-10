@@ -8,6 +8,7 @@ CURRENT
         -express middleware ready- need function to pass token on route change or reload (if exists).  Where to store?  sessionStorage?  how to pass?
             -storing in session/localStorage works fine, but how to pass with each request?  can do it with ajax, but how to do it with normal http requests?  sessions?
                 -tried to use ajax to hijack all link tags, pass auth token, then get response.  works for passing token, gets to endpoint past security on server, but can't seem to get it to then give me the page/file I want (returns everything as json).  also, always get failure response- why?
+                -instead, maybe use passport with local strategy.
         -add client/server validation (check for blanks, implement zxcvbn?)
         -user should get an email confirmation (after approval by admin)- click the link and they can configure their profile (optional).
         -enable bcrypt for password
